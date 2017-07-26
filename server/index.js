@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -40,6 +41,7 @@ function runServer(port=3001, databaseUrl=secret.DB_URL) {
 }
 
 function closeServer() {
+  return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
         server.close(err => {
             if (err) {
@@ -48,6 +50,7 @@ function closeServer() {
             resolve();
         });
     });
+  });
 }
 
 if (require.main === module) {

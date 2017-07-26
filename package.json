@@ -1,5 +1,5 @@
 {
-  "name": "Orlando Lady Devs",
+  "name": "orlando-lady-devs",
   "version": "0.1.0",
   "description": "A place to keep track of all the Orlando lady devs",
   "main": "index.js",
@@ -24,7 +24,7 @@
     "cross-env": "^3.1.4",
     "express": "^4.14.1",
     "http-proxy-middleware": "^0.17.3",
-    "mongoose": "^4.11.4",
+    "mongoose": "^4.10.8",
     "npm-run-all": "^4.0.1",
     "xp": "^1.0.1"
   }
