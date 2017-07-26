@@ -20,3 +20,7 @@ const ladydevSchema = mongoose.Schema({
   suggestions: { type: String, required: true },
   //image: {}
 })
+
+const ladydev = mongoose.model('ladydev', ladydevSchema);
+
+module.exports = { ladydev };
