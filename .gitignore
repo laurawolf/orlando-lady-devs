@@ -1,3 +1,6 @@
+#My ignore
+secret.js
+
 # Logs
 logs
 *.log

@@ -3,6 +3,10 @@ const express = require('express');
 
 const app = express();
 
+let secret = {
+  DB_URL: process.env.DB_URL
+}
+
 // API endpoints go here!
 
 
@@ -17,11 +21,21 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(port=3001) {
+function runServer(port=3001, databaseUrl=secret.DB_URL) {
     return new Promise((resolve, reject) => {
+      mongoose.connect(process.env.DATABASE_URL || databaseUrl, err => {
+        if (err) {
+          return reject(err);
+        }
+
         server = app.listen(port, () => {
-            resolve();
-        }).on('error', reject);
+          resolve();
+        }).on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+          resolve();
+        });
+      });
     });
 }
 
