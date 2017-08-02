@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 
 const ladydevSchema = mongoose.Schema({
-  firstName: { type: String, requered: true },
-  lastName: { type: String, requered: true },
-  knowledge: { type: String, requered: true },
-  learning: { type: String, required: true },
-  futureLearning: { type: String, required: true },
-  company: { type: String, required: true },
-  position: { type: String, required: true },
-  suggestions: { type: String, required: true },
-})
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  currentExpertise: { type: String, required: true },
+  currentlyLearning: { type: String, required: true },
+  interestedInLearning: { type: String, required: true },
+  currentCompany: { type: String, required: true },
+  currentPosition: { type: String, required: true },
+  meetupSuggestions: { type: String, required: true },
+});
 
-const ladyDev = mongoose.model('ladyDev', ladydevSchema);
+const LadyDev = mongoose.model('LadyDev', ladydevSchema);
 
-module.exports = { ladyDev };
+module.exports = { LadyDev };
