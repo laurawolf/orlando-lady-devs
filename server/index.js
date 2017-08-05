@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const { LadyDev } = require('./models/lady-dev');
 const devSecret = require('./secret');
 
 mongoose.Promise = global.Promise;
@@ -26,6 +25,7 @@ const authRoutes = require('./routes/auth-routes');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use('/api/auth', authRoutes);
 app.use('/api/ladydevs', ladyRoutes);
 
@@ -46,7 +46,6 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 let server;
 function runServer(port = 3001, databaseUrl = secret.DB_URL) {
   return new Promise((resolve, reject) => {
-    console.log('database', databaseUrl);
     mongoose.connect(process.env.DATABASE_URL || databaseUrl, { useMongoClient: true }, err => {
       if (err) {
         console.log('err', err);
@@ -66,16 +65,16 @@ function runServer(port = 3001, databaseUrl = secret.DB_URL) {
 }
 
 function closeServer() {
-  return mongoose.disconnect().then(() => {
-    return new Promise((resolve, reject) => {
+  return mongoose.disconnect().then(() =>
+    new Promise((resolve, reject) => {
         server.close(err => {
             if (err) {
                 return reject(err);
             }
             resolve();
         });
-    });
-  });
+    })
+  );
 }
 
 if (require.main === module) {

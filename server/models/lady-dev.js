@@ -14,4 +14,4 @@ const LadydevSchema = mongoose.Schema({
 
 const LadyDev = mongoose.model('LadyDev', LadydevSchema);
 
-module.exports = { LadyDev };
+module.exports = LadyDev;

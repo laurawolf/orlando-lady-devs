@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bearer = require('../auth/bearer');
 const passport = require('../auth/google');
-const User = require('../models/user');
 
 const router = express.Router();
 

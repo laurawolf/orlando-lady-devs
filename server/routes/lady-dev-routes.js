@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passportGoogle = require('../auth/google');
-//const bearer = require('../auth/bearer');
 const LadyDev = require('../models/lady-dev');
 
 mongoose.Promise = global.Promise;
