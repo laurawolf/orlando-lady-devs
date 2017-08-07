@@ -1,4 +1,5 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 export class Home extends Component {
@@ -11,8 +12,8 @@ export class Home extends Component {
         <p className="App-intro">
           Help us find out who the Lady Devs are!
         </p>
-        <button type="button"><a href="#">I'm a lady dev organizer</a></button>
-        <button type="button"><a href="#">I'm a lady dev member</a></button>
+        <button type="button"><Link to='/organizer'>I'm a lady dev organizer</Link></button>
+        <button type="button"><Link to='/lady-dev'>I'm a lady dev member</Link></button>
       </div>
     );
   }
