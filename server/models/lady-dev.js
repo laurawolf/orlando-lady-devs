@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ladydevSchema = mongoose.Schema({
+const LadydevSchema = mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -12,6 +12,6 @@ const ladydevSchema = mongoose.Schema({
   meetupSuggestions: { type: String, required: true },
 });
 
-const LadyDev = mongoose.model('LadyDev', ladydevSchema);
+const LadyDev = mongoose.model('LadyDev', LadydevSchema);
 
-module.exports = { LadyDev };
+module.exports = LadyDev;
