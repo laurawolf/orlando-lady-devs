@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import '../App.css';
+import { fetchUser } from '../actions';
 
 class Home extends Component {
+
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.authenticated) {
+      this.context.router.history.push('/organizer');
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -22,5 +39,8 @@ class Home extends Component {
     );
   }
 }
+const mapStatetoProps = state => ({
+  authenticated: state.user.authenticated
+});
 
-export default Home;
+export default connect(mapStatetoProps, { fetchUser })(Home);

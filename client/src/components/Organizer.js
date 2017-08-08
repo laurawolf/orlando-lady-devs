@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import requireAuth from './require-auth';
 
 class Organizer extends Component {
   render() {
@@ -16,4 +17,4 @@ class Organizer extends Component {
   }
 }
 
-export default Organizer;
+export default requireAuth(Organizer);
