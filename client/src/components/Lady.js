@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-export class Lady extends Component {
+class Lady extends Component {
   render() {
     return (
       <div className="App">
@@ -16,3 +16,5 @@ export class Lady extends Component {
     );
   }
 }
+
+export default Lady;
