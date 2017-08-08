@@ -1,9 +1,16 @@
 import React from 'react';
-import Main from './Main';
+import { Switch, Route } from 'react-router-dom';
+import Home from './Home';
+import Lady from './Lady';
+import Organizer from './Organizer';
 
 const App = () => (
   <div>
-    <Main />
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route path='/organizer' component={Organizer} />
+      <Route path='/lady-dev' component={Lady} />
+    </Switch>
   </div>
 );
 

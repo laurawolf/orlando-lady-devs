@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-export class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <div className="App">
@@ -22,3 +22,5 @@ export class Home extends Component {
     );
   }
 }
+
+export default Home;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-export class Organizer extends Component {
+class Organizer extends Component {
   render() {
     return (
       <div className="App">
@@ -15,3 +15,5 @@ export class Organizer extends Component {
     );
   }
 }
+
+export default Organizer;
