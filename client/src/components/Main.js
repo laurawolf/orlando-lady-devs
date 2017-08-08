@@ -7,11 +7,11 @@ import { Organizer } from './Organizer';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route path='/organizer' component={Organizer}/>
-      <Route path='/lady-dev' component={Lady}/>
+      <Route exact path='/' component={Home} />
+      <Route path='/organizer' component={Organizer} />
+      <Route path='/lady-dev' component={Lady} />
     </Switch>
   </main>
-)
+);
 
-export default Main
+export default Main;
