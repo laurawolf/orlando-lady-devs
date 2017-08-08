@@ -12,8 +12,12 @@ export class Home extends Component {
         <p className="App-intro">
           Help us find out who the Lady Devs are!
         </p>
-        <button type="button"><Link to='/organizer'>I'm a lady dev organizer</Link></button>
-        <button type="button"><Link to='/lady-dev'>I'm a lady dev member</Link></button>
+        <button type="button">
+          <Link to='/organizer'>I'm a lady dev organizer</Link>
+          </button>
+          <button type="button">
+            <Link to='/lady-dev'>I'm a lady dev member</Link>
+          </button>
       </div>
     );
   }
