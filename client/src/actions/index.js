@@ -12,7 +12,7 @@ export const fetchUserSuccess = (user) => ({
 });
 
 export const fetchUserFailure = (error) => ({
-  type: FETCH_USER_SUCCESS,
+  type: FETCH_USER_FAILURE,
   payload: {
     error
   }
@@ -25,15 +25,7 @@ export const fetchUser = () => dispatch => {
       Authorization: `Bearer ${accessToken}`
     }
   })
-  .then(response => {
-    return response.json();
-  })
-  .then(user => {
-    console.log(user);
-    dispatch(fetchUserSuccess(user));
-  })
-  .catch(error => {
-    console.log(error);
-    dispatch(fetchUserFailure());
-  });
+  .then(response => response.json())
+  .then(user => dispatch(fetchUserSuccess(user)))
+  .catch(error => dispatch(fetchUserFailure(error)));
 };
