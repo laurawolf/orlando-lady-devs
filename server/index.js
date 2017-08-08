@@ -1,51 +1,37 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const bodyParser = require('body-parser');
+const devSecret = require('./secret');
 
 mongoose.Promise = global.Promise;
 
-const secret = require('./secret');
-const { LadyDev } = require('./models');
+let secret = {
+  CLIENT_ID: process.env.CLIENT_ID,
+  CLIENT_SECRET: process.env.CLIENT_SECRET,
+  DB_URL: process.env.DB_URL,
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  secret = devSecret;
+}
+
+global.secret = secret;
+
+const ladyRoutes = require('./routes/lady-dev-routes');
+const authRoutes = require('./routes/auth-routes');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/api/auth', authRoutes);
+app.use('/api/ladydevs', ladyRoutes);
+
 // API endpoints go here!
 
-app.get('/api/ladydevs', (req, res) => {
-  LadyDev
-  .find()
-  .exec()
-  .then(ladies => {
-    res.json(ladies);
-  })
-  .catch(err => {
-    res.status(500).json({ error: 'something went wrong' });
-  });
-});
-
-app.post('/api/ladydevs', (req, res) => {
-  LadyDev
-  .create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    currentExpertise: req.body.currentExpertise,
-    currentlyLearning: req.body.currentlyLearning,
-    interestedInLearning: req.body.interestedInLearning,
-    currentCompany: req.body.currentCompany,
-    currentPosition: req.body.currentPosition,
-    meetupSuggestions: req.body.meetupSuggestions
-  })
-  .then(lady => {
-    res.status(201).json(lady);
-  })
-  .catch(err => {
-    res.status(500).json({ error: 'something went wrong' });
-  });
-});
+app.use(passport.initialize());
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -58,9 +44,8 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(port=3001, databaseUrl=secret.DB_URL) {
+function runServer(port = 3001, databaseUrl = secret.DB_URL) {
   return new Promise((resolve, reject) => {
-    console.log('database', databaseUrl);
     mongoose.connect(process.env.DATABASE_URL || databaseUrl, { useMongoClient: true }, err => {
       if (err) {
         console.log('err', err);
@@ -71,25 +56,25 @@ function runServer(port=3001, databaseUrl=secret.DB_URL) {
 
       server = app.listen(port, () => {
         resolve();
-      }).on('error', err => {
+      }).on('error', error => {
         mongoose.disconnect();
-        reject(err);
+        reject(error);
       });
     });
   });
 }
 
 function closeServer() {
-  return mongoose.disconnect().then(() => {
-    return new Promise((resolve, reject) => {
+  return mongoose.disconnect().then(() =>
+    new Promise((resolve, reject) => {
         server.close(err => {
             if (err) {
                 return reject(err);
             }
             resolve();
         });
-    });
-  });
+    })
+  );
 }
 
 if (require.main === module) {
