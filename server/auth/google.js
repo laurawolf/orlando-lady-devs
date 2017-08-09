@@ -10,11 +10,13 @@ passport.use(
     callbackURL: '/api/auth/google/callback'
   },
   (accessToken, refreshToken, profile, cb) => {
+    console.log(profile.emails[0].value);
     const searchQuery = {
       googleID: profile.id
     };
 
     const updates = {
+      email: profile.emails[0].value,
       name: profile.displayName,
       accessToken,
       googleID: profile.id
