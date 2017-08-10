@@ -4,6 +4,10 @@ import '../App.css';
 
 class Lady extends Component {
 
+  onSubmit(values) {
+    console.log(values);
+  }
+
   renderField(field) {
     return (
       <div>
@@ -12,11 +16,14 @@ class Lady extends Component {
           type="text"
           {...field.input}
         />
+      {field.meta.touched ? field.meta.error : ''}
       </div>
     );
   }
 
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <div className="App">
 
@@ -27,7 +34,7 @@ class Lady extends Component {
           </p>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="First Name"
             name="firstName"
@@ -43,7 +50,7 @@ class Lady extends Component {
             name="email"
             component={this.renderField}
           />
-
+        <button type="submit">Submit</button>
         </form>
 
       </div>
@@ -51,6 +58,25 @@ class Lady extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.firstName) {
+    errors.firstName = 'Enter your first name';
+  }
+
+  if (!values.lastName) {
+    errors.lastName = 'Enter your last name';
+  }
+
+  if (!values.email) {
+    errors.email = 'Enter your email';
+  }
+
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   form: 'LadiesNewForm'
 })(Lady);
