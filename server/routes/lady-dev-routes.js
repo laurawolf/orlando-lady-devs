@@ -28,11 +28,11 @@ router.post('/', (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
+    currentCompany: req.body.currentCompany,
+    currentPosition: req.body.currentPosition,
     currentExpertise: req.body.currentExpertise,
     currentlyLearning: req.body.currentlyLearning,
     interestedInLearning: req.body.interestedInLearning,
-    currentCompany: req.body.currentCompany,
-    currentPosition: req.body.currentPosition,
     meetupSuggestions: req.body.meetupSuggestions
   })
   .then(lady => {

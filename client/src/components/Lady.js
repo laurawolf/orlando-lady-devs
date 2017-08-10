@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { postQuestions } from '../actions/questions';
 import '../App.css';
 
 class Lady extends Component {
 
   onSubmit(values) {
-    console.log(values);
+    this.props.postQuestions(values);
   }
 
   renderField(field) {
@@ -50,7 +52,40 @@ class Lady extends Component {
             name="email"
             component={this.renderField}
           />
+          <Field
+            label="Company"
+            name="currentCompany"
+            component={this.renderField}
+          />
+          <Field
+            label="Position"
+            name="currentPosition"
+            component={this.renderField}
+          />
+          <Field
+            label="What technologies do you know?"
+            name="currentExpertise"
+            component={this.renderField}
+          />
+          <Field
+            label="What technologies are you currently learning?"
+            name="currentlyLearning"
+            component={this.renderField}
+          />
+          <Field
+            label="What technologies are you interested in learning?"
+            name="interestedInLearning"
+            component={this.renderField}
+          />
+          <Field
+            label="Please give us suggestions of topics you would like to see at the meetups?"
+            name="meetupSuggestions"
+            component={this.renderField}
+          />
+
+
         <button type="submit">Submit</button>
+
         </form>
 
       </div>
@@ -79,4 +114,6 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'LadiesNewForm'
-})(Lady);
+})(
+  connect(null, { postQuestions })(Lady)
+);
