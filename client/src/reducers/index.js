@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import user from './user_reducer';
+import { reducer as formReducer } from 'redux-form';
+import UserReducer from './user_reducer';
 
-export default combineReducers({
-  user
+const rootReducer = combineReducers({
+  user: UserReducer,
+  form: formReducer
 });
+
+export default rootReducer;
