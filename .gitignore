@@ -1,5 +1,7 @@
 #My ignore
 secret.js
+yarn.lock
+
 
 # Logs
 logs
