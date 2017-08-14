@@ -5,7 +5,7 @@ const UserSchema = mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   accessToken: { type: String, required: true },
-  approved: { type: Boolean, required: true, default: false }
+  status: { type: String, required: true, default: 'pending' }
 });
 
 const User = mongoose.model('User', UserSchema);
