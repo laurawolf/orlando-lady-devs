@@ -6,7 +6,11 @@ import {
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_USER_SUCCESS:
-      return { ...state, name: action.payload.name, authenticated: true };
+      return { ...state,
+        name: action.payload.name,
+        authenticated: true,
+        status: action.payload.status
+       };
     case FETCH_USER_FAILURE:
       return { ...state, authenticated: false };
     default:

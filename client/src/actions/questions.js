@@ -11,8 +11,8 @@ export const postQuestions = (values) => dispatch => {
       throw new Error(res.statusText);
     }
     return res.json();
-  }).then(res => {
-    dispatch(postQuestionsSuccess(values));
+  }).then(data => {
+    dispatch(postQuestionsSuccess(data));
   });
 };
 

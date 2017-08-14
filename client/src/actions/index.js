@@ -7,7 +7,8 @@ import {
 export const fetchUserSuccess = (user) => ({
   type: FETCH_USER_SUCCESS,
   payload: {
-    name: user.name
+    name: user.name,
+    status: user.status
   }
 });
 
