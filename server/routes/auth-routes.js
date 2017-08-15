@@ -20,6 +20,8 @@ router.get(
     // send welcom email for new signup
     const subject = 'Welcome to Lady Devs';
     sendMail(req.user.email, subject)
+      // send email to person who just signed up
+      .then(() => sendMail(global.secret.ADMIN_EMAIL_ADDRESS, `New User: ${req.user.email}`))
       .then(info => console.log(info))
       .catch(error => console.log(error));
     res.cookie('accessToken', req.user.accessToken, { expires: 0 });
