@@ -12,4 +12,22 @@ const options = {
 
 const smtpTransport = nodemailer.createTransport(options);
 
-module.exports = smtpTransport;
+const sendMail = (recipient, subject) =>
+  new Promise((resolve, reject) => {
+    const mailOptions = {
+      from: 'Lady Devs <dev.forms.node@gmail.com>',
+      to: recipient,
+      subject,
+      text: 'We have received your organizer request and approve it pronto',
+      html: '<b>Lady Devs Rule!!<b>'
+    };
+    smtpTransport.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(info);
+      }
+    });
+  });
+
+module.exports = sendMail;
