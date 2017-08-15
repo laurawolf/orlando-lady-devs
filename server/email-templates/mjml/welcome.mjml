@@ -1,0 +1,34 @@
+<mjml>
+  <mj-body>
+    <mj-container>
+
+      <!-- Company Header -->
+      <mj-section background-color="#f0f0f0">
+        <mj-column>
+          <mj-text  font-style="italic"
+                    font-size="20"
+                    color="#626262">
+            {Variable to prin}
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+
+      <!-- Image Header -->
+      <mj-section background-color="#f0f0f0"></mj-section>
+
+      <!-- Introduction Text -->
+      <mj-section background-color="#fafafa"></mj-section>
+
+      <!-- 2 columns section -->
+      <mj-section background-color="white"></mj-section>
+
+      <!-- Icons -->
+      <mj-section background-color="#fbfbfb"></mj-section>
+
+      <!-- Social icons -->
+      <mj-section background-color="#f0f0f0"></mj-section>
+
+    </mj-container>
+  </mj-body>
+</mjml>

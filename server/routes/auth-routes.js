@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// eslint-disable-next-line
 const bearer = require('../auth/bearer');
 const passport = require('../auth/google');
 const sendMail = require('../utils/mailer');
@@ -17,10 +18,10 @@ router.get(
     session: false
   }),
   (req, res) => {
-    // send welcom email for new signup
     const subject = 'Welcome to Lady Devs';
+    // send welcome email for new signup
     sendMail(req.user.email, subject)
-      // send email to person who just signed up
+      // send email to admin notifying new signup
       .then(() => sendMail(global.secret.ADMIN_EMAIL_ADDRESS, `New User: ${req.user.email}`))
       .then(info => console.log(info))
       .catch(error => console.log(error));

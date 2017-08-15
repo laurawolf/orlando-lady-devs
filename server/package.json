@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "email-build": "mju --build -i ./email-templates/mjml -o ./email-templates/html",
+    "email-watch": "mju --watch -i ./email-templates/mjml -o ./email-templates/html"
   },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.14.1",
+    "mjml": "^3.3.3",
+    "mjml-utils": "^2.1.0",
     "mongoose": "^4.11.4",
     "nodemailer": "^4.0.1",
     "nodemon": "^1.11.0",
